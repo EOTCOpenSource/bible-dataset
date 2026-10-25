@@ -1,0 +1,25 @@
+name: Dataset Schema & Catalog Validation
+
+on:
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
+
+jobs:
+  validate:
+    name: Validate Bible JSON & Catalogs
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run Dataset Integrity & Schema Validator
+        run: |
+          python3 scripts/validate.py

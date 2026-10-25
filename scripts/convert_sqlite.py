@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Convert Geez (or MyBible format) SQLite Bible databases to chapter JSON files,
-matching the project's folder structure: <output_dir>/<testament>/<book>/<chapter>.json
+Convert Geez (or MyBible format) SQLite Bible databases to canonical book JSON files,
+matching the project's standard structure: data/<translation>/<Book_Name>.json
 """
 
 import argparse
@@ -9,7 +9,36 @@ import json
 import os
 import re
 import sqlite3
-from typing import Dict, Optional, Tuple
+from typing import Dict, Optional, Tuple, Any
+
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.dirname(SCRIPT_DIR)
+
+CANONICAL_BOOKS: Dict[int, Dict[str, Any]] = {}
+BOOKS_BY_NAME: Dict[str, Dict[str, Any]] = {}
+
+
+def load_metadata():
+    """Load canonical books and apocrypha metadata."""
+    global CANONICAL_BOOKS, BOOKS_BY_NAME
+    books_json_path = os.path.join(PROJECT_ROOT, "books.json")
+    if os.path.isfile(books_json_path):
+        with open(books_json_path, "r", encoding="utf-8") as f:
+            for item in json.load(f):
+                num = item["number"]
+                CANONICAL_BOOKS[num] = item
+                BOOKS_BY_NAME[item["id"].lower().replace("_", "")] = item
+                BOOKS_BY_NAME[item["name"].lower().replace("_", "")] = item
+
+    apoc_json_path = os.path.join(PROJECT_ROOT, "apocrypha_books.json")
+    if os.path.isfile(apoc_json_path):
+        with open(apoc_json_path, "r", encoding="utf-8") as f:
+            for item in json.load(f):
+                BOOKS_BY_NAME[item["id"].lower().replace("_", "")] = item
+                BOOKS_BY_NAME[item["name"].lower().replace("_", "")] = item
+
+
+load_metadata()
 
 BOOK_NAMES = [
     "Genesis", "Exodus", "Leviticus", "Numbers", "Deuteronomy", "Joshua",
@@ -33,7 +62,7 @@ MYBIBLE_BOOK_NUMBERS = {
     110: "1_Kings", 120: "2_Kings", 130: "1_Chronicles", 140: "2_Chronicles",
     150: "Ezra", 160: "Nehemiah", 170: "Esther", 180: "Job", 190: "Psalms",
     200: "Proverbs", 210: "Ecclesiastes", 220: "Song_of_Solomon",
-    230: "Psalms",  # In some MyBible module variations Job is 220 and Psalms is 230
+    230: "Psalms",
     240: "Proverbs", 250: "Ecclesiastes", 260: "Song_of_Solomon",
     290: "Isaiah", 300: "Jeremiah", 310: "Lamentations", 330: "Ezekiel",
     340: "Daniel", 350: "Hosea", 360: "Joel", 370: "Amos", 380: "Obadiah",
@@ -47,11 +76,9 @@ MYBIBLE_BOOK_NUMBERS = {
     690: "1_John", 700: "2_John", 710: "3_John", 720: "Jude", 730: "Revelation",
 }
 
-# Mapping normalized book names (lowercase, no spaces/underscores) to canonical BOOK_NAMES entry
 NORMALIZED_BOOK_MAP = {
     name.lower().replace("_", ""): name for name in BOOK_NAMES
 }
-# Common alternate aliases
 NORMALIZED_BOOK_MAP.update({
     "psalm": "Psalms",
     "songofsongs": "Song_of_Solomon",
@@ -59,19 +86,25 @@ NORMALIZED_BOOK_MAP.update({
 })
 
 
-def resolve_book(db_book_num: int, long_name: Optional[str] = None, short_name: Optional[str] = None) -> Tuple[str, int, str]:
+def resolve_book(db_book_num: int, long_name: Optional[str] = None, short_name: Optional[str] = None) -> Tuple[str, int, str, str]:
     """
-    Resolves canonical book name, 1-based canonical book number, and testament ("old" or "new").
+    Resolves canonical book name, 1-based canonical book number, USFM code, and testament ("old" or "new").
     """
     canonical_name = None
 
     if long_name:
         clean_name = long_name.strip().lower().replace(" ", "").replace("_", "")
+        if clean_name in BOOKS_BY_NAME:
+            meta = BOOKS_BY_NAME[clean_name]
+            return meta["id"], meta["number"], meta["usfm"], meta["testament"]
         if clean_name in NORMALIZED_BOOK_MAP:
             canonical_name = NORMALIZED_BOOK_MAP[clean_name]
 
     if not canonical_name and short_name:
         clean_short = short_name.strip().lower().replace(" ", "").replace("_", "")
+        if clean_short in BOOKS_BY_NAME:
+            meta = BOOKS_BY_NAME[clean_short]
+            return meta["id"], meta["number"], meta["usfm"], meta["testament"]
         if clean_short in NORMALIZED_BOOK_MAP:
             canonical_name = NORMALIZED_BOOK_MAP[clean_short]
 
@@ -84,30 +117,28 @@ def resolve_book(db_book_num: int, long_name: Optional[str] = None, short_name: 
         else:
             canonical_name = f"Book_{db_book_num}"
 
-    if canonical_name in BOOK_NAMES:
-        canonical_book_number = BOOK_NAMES.index(canonical_name) + 1
-    else:
-        canonical_book_number = db_book_num
+    clean_key = canonical_name.lower().replace("_", "")
+    if clean_key in BOOKS_BY_NAME:
+        meta = BOOKS_BY_NAME[clean_key]
+        return meta["id"], meta["number"], meta["usfm"], meta["testament"]
 
-    testament = "old" if canonical_book_number <= 39 else "new"
-    return canonical_name, canonical_book_number, testament
+    if canonical_name in BOOK_NAMES:
+        num = BOOK_NAMES.index(canonical_name) + 1
+        testament = "old" if num <= 39 else "new"
+        return canonical_name, num, canonical_name[:3].upper(), testament
+
+    return canonical_name, db_book_num, "UNK", "old"
 
 
 def clean_verse(text: str) -> str:
     """Normalize verse text by stripping XML/HTML tags and non-Amharic symbols."""
     if not text:
         return ""
-    # Remove page break tags
     t = re.sub(r'<pb\s*/?>', '', text)
-    # Remove footnote tags and contents (<f>...</f>)
     t = re.sub(r'<f>.*?</f>', '', t, flags=re.DOTALL)
-    # Strip any formatting tags (<J>, </J>, etc.) preserving inner text
     t = re.sub(r'</?[A-Za-z][^>]*>', '', t)
-    # Remove non-Ethiopic quotation marks, brackets, and Latin punctuation
     t = re.sub(r'[«»!()[\]]', '', t)
-    # Collapse whitespace
     t = re.sub(r'[ \t\r\n]+', ' ', t)
-    # Remove space before Ethiopic punctuation marks
     t = re.sub(r'\s+([።፥፣፤፡፦፠፨])', r'\1', t)
     return t.strip()
 
@@ -119,14 +150,16 @@ def write_json_file(data: dict, json_path: str, indent: int = 2):
         json.dump(data, f, indent=indent, ensure_ascii=False)
 
 
-def convert_sqlite_to_json(db_path: str, output_dir: str = "geez", indent: int = 2):
+def convert_sqlite_to_json(db_path: str, translation_id: str = "geez", output_dir: Optional[str] = None, indent: int = 2):
     if not os.path.isfile(db_path):
         raise FileNotFoundError(f"Database file not found: {db_path}")
+
+    if output_dir is None:
+        output_dir = os.path.join(PROJECT_ROOT, "data", translation_id)
 
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
 
-    # Load books table if available
     books_meta: Dict[int, Tuple[str, str]] = {}
     try:
         cursor.execute("SELECT book_number, short_name, long_name FROM books")
@@ -135,64 +168,66 @@ def convert_sqlite_to_json(db_path: str, output_dir: str = "geez", indent: int =
     except sqlite3.OperationalError:
         pass
 
-    # Fetch verses grouped by book_number, chapter, verse
     cursor.execute("""
         SELECT book_number, chapter, verse, text
         FROM verses
         ORDER BY book_number, chapter, verse
     """)
 
-    current_key = None
-    current_verses = {}
-    chapter_count = 0
-    book_count = set()
-
-    def flush_chapter(key, verses_dict):
-        nonlocal chapter_count
-        if key is None:
-            return
-        b_num, ch_num = key
-        short_name, long_name = books_meta.get(b_num, ("", ""))
-        book_name, book_number, testament = resolve_book(b_num, long_name, short_name)
-
-        data = {
-            "testament": testament,
-            "book": book_name,
-            "book_number": book_number,
-            "chapter": ch_num,
-            "verses": verses_dict,
-        }
-
-        path = os.path.join(output_dir, testament, book_name, f"{ch_num}.json")
-        write_json_file(data, path, indent=indent)
-        chapter_count += 1
-        book_count.add(book_name)
+    # Group verses: book_number -> chapter_number -> {verse_str: text}
+    books_data: Dict[int, Dict[int, Dict[str, str]]] = {}
 
     for b_num, ch_num, v_num, text in cursor:
         b_num = int(b_num)
         ch_num = int(ch_num)
-        key = (b_num, ch_num)
-
-        if key != current_key:
-            if current_key is not None:
-                flush_chapter(current_key, current_verses)
-            current_key = key
-            current_verses = {}
-
-        current_verses[str(int(v_num))] = clean_verse(text)
-
-    if current_key is not None:
-        flush_chapter(current_key, current_verses)
+        if b_num not in books_data:
+            books_data[b_num] = {}
+        if ch_num not in books_data[b_num]:
+            books_data[b_num][ch_num] = {}
+        books_data[b_num][ch_num][str(int(v_num))] = clean_verse(text)
 
     conn.close()
-    print(f"Done: Converted {len(book_count)} books and {chapter_count} chapters to '{output_dir}/'")
+
+    total_books = 0
+    total_chapters = 0
+    total_verses = 0
+
+    for b_num, chapters_map in books_data.items():
+        short_name, long_name = books_meta.get(b_num, ("", ""))
+        book_name, book_number, usfm, testament = resolve_book(b_num, long_name, short_name)
+
+        chapters_list = []
+        for ch_num in sorted(chapters_map.keys()):
+            verses_dict = chapters_map[ch_num]
+            chapters_list.append({
+                "chapter": ch_num,
+                "verses": verses_dict
+            })
+            total_chapters += 1
+            total_verses += len(verses_dict)
+
+        data = {
+            "translation": translation_id,
+            "book": book_name,
+            "book_number": book_number,
+            "usfm": usfm,
+            "testament": testament,
+            "chapters": chapters_list
+        }
+
+        path = os.path.join(output_dir, f"{book_name}.json")
+        write_json_file(data, path, indent=indent)
+        total_books += 1
+
+    print(f"Success: Converted {total_books} books, {total_chapters} chapters, {total_verses} verses to '{output_dir}/'")
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Convert Geez SQLite Bible database to chapter JSON files.")
+    parser = argparse.ArgumentParser(description="Convert Geez / MyBible SQLite database to project standard book JSON files.")
     parser.add_argument("input", nargs="?", default="Geez.SQLite3", help="Path to SQLite3 file (default: Geez.SQLite3)")
-    parser.add_argument("-o", "--output", default="geez", help="Output directory (default: geez)")
+    parser.add_argument("-t", "--translation", default="geez", help="Translation ID (default: geez)")
+    parser.add_argument("-o", "--output", default=None, help="Output directory (default: data/<translation>)")
     parser.add_argument("--indent", type=int, default=2, help="JSON indentation level (default: 2)")
     args = parser.parse_args()
 
-    convert_sqlite_to_json(args.input, args.output, indent=args.indent)
+    convert_sqlite_to_json(args.input, translation_id=args.translation, output_dir=args.output, indent=args.indent)

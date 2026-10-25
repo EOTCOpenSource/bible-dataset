@@ -115,9 +115,13 @@ git checkout -b fix/geez-psalms-typo
 ```
 
 ### Step 3: Make Your Changes & Validate
-Add or edit the relevant JSON files. You can validate JSON syntax with:
+Add or edit the relevant JSON files. You can validate the entire dataset schema and catalogs with the built-in validator:
 ```bash
-python3 -m json.tool data/am2000/John.json > /dev/null
+python3 scripts/validate.py
+```
+To automatically synchronize and verify book/chapter/verse counts in `translations.json`:
+```bash
+python3 scripts/validate.py --fix-stats
 ```
 
 ### Step 4: Update Metadata
