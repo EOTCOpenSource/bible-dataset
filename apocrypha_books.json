@@ -1,0 +1,138 @@
+[
+  {
+    "number": 1,
+    "id": "1_Esdras",
+    "usfm": "1ES",
+    "testament": "old",
+    "chapters_count": 13,
+    "name": "1 Esdras",
+    "amharic_name": "መጽሐፈ ዕዝራ ሱቱኤል"
+  },
+  {
+    "number": 2,
+    "id": "2_Esdras",
+    "usfm": "2ES",
+    "testament": "old",
+    "chapters_count": 9,
+    "name": "2 Esdras",
+    "amharic_name": "መጽሐፈ ዕዝራ ካልእ"
+  },
+  {
+    "number": 3,
+    "id": "Tobit",
+    "usfm": "TOB",
+    "testament": "old",
+    "chapters_count": 14,
+    "name": "Tobit",
+    "amharic_name": "መጽሐፈ ጦቢት"
+  },
+  {
+    "number": 4,
+    "id": "Judith",
+    "usfm": "JDT",
+    "testament": "old",
+    "chapters_count": 16,
+    "name": "Judith",
+    "amharic_name": "መጽሐፈ ዮዲት"
+  },
+  {
+    "number": 5,
+    "id": "Jubilees",
+    "usfm": "JUB",
+    "testament": "old",
+    "chapters_count": 34,
+    "name": "Jubilees",
+    "amharic_name": "መጽሐፈ ኩፋሌ"
+  },
+  {
+    "number": 6,
+    "id": "Enoch",
+    "usfm": "ENO",
+    "testament": "old",
+    "chapters_count": 42,
+    "name": "Enoch",
+    "amharic_name": "መጽሐፈ ሄኖክ"
+  },
+  {
+    "number": 7,
+    "id": "1_Maccabees",
+    "usfm": "1MA",
+    "testament": "old",
+    "chapters_count": 36,
+    "name": "1 Maccabees",
+    "amharic_name": "መጽሐፈ መቃብያን ቀዳማዊ"
+  },
+  {
+    "number": 8,
+    "id": "2_Maccabees",
+    "usfm": "2MA",
+    "testament": "old",
+    "chapters_count": 21,
+    "name": "2 Maccabees",
+    "amharic_name": "መጽሐፈ መቃብያን ካልእ"
+  },
+  {
+    "number": 9,
+    "id": "3_Maccabees",
+    "usfm": "3MA",
+    "testament": "old",
+    "chapters_count": 10,
+    "name": "3 Maccabees",
+    "amharic_name": "መጽሐፈ መቃብያን ሣልስ"
+  },
+  {
+    "number": 10,
+    "id": "Book_of_Admonition",
+    "usfm": "TEG",
+    "testament": "old",
+    "chapters_count": 6,
+    "name": "Book of Admonition",
+    "amharic_name": "መጽሐፈ ተግሣጽ"
+  },
+  {
+    "number": 11,
+    "id": "Wisdom_of_Solomon",
+    "usfm": "WIS",
+    "testament": "old",
+    "chapters_count": 19,
+    "name": "Wisdom of Solomon",
+    "amharic_name": "መጽሐፈ ጥበብ"
+  },
+  {
+    "number": 12,
+    "id": "Sirach",
+    "usfm": "SIR",
+    "testament": "old",
+    "chapters_count": 51,
+    "name": "Sirach",
+    "amharic_name": "መጽሐፈ ሲራክ"
+  },
+  {
+    "number": 13,
+    "id": "Baruch",
+    "usfm": "BAR",
+    "testament": "old",
+    "chapters_count": 5,
+    "name": "Baruch",
+    "amharic_name": "መጽሐፈ ባሮክ"
+  },
+  {
+    "number": 14,
+    "id": "Letter_of_Jeremiah",
+    "usfm": "LJE",
+    "testament": "old",
+    "chapters_count": 1,
+    "name": "Letter of Jeremiah",
+    "amharic_name": "ተረፈ ኤርምያስ"
+  },
+  {
+    "number": 15,
+    "id": "Rest_of_Baruch",
+    "4BA": "4BA",
+    "usfm": "4BA",
+    "testament": "old",
+    "chapters_count": 5,
+    "name": "Rest of Baruch",
+    "amharic_name": "ተረፈ ባሮክ"
+  }
+]

@@ -1,0 +1,596 @@
+[
+  {
+    "number": 1,
+    "id": "Genesis",
+    "usfm": "GEN",
+    "testament": "old",
+    "chapters_count": 50,
+    "name": "Genesis",
+    "amharic_name": "ዘፍጥረት"
+  },
+  {
+    "number": 2,
+    "id": "Exodus",
+    "usfm": "EXO",
+    "testament": "old",
+    "chapters_count": 40,
+    "name": "Exodus",
+    "amharic_name": "ዘጸአት"
+  },
+  {
+    "number": 3,
+    "id": "Leviticus",
+    "usfm": "LEV",
+    "testament": "old",
+    "chapters_count": 27,
+    "name": "Leviticus",
+    "amharic_name": "ዘሌዋውያን"
+  },
+  {
+    "number": 4,
+    "id": "Numbers",
+    "usfm": "NUM",
+    "testament": "old",
+    "chapters_count": 36,
+    "name": "Numbers",
+    "amharic_name": "ዘኍልቍ"
+  },
+  {
+    "number": 5,
+    "id": "Deuteronomy",
+    "usfm": "DEU",
+    "testament": "old",
+    "chapters_count": 34,
+    "name": "Deuteronomy",
+    "amharic_name": "ዘዳግም"
+  },
+  {
+    "number": 6,
+    "id": "Joshua",
+    "usfm": "JOS",
+    "testament": "old",
+    "chapters_count": 24,
+    "name": "Joshua",
+    "amharic_name": "ኢያሱ"
+  },
+  {
+    "number": 7,
+    "id": "Judges",
+    "usfm": "JDG",
+    "testament": "old",
+    "chapters_count": 21,
+    "name": "Judges",
+    "amharic_name": "መሳፍንት"
+  },
+  {
+    "number": 8,
+    "id": "Ruth",
+    "usfm": "RUT",
+    "testament": "old",
+    "chapters_count": 4,
+    "name": "Ruth",
+    "amharic_name": "ሩት"
+  },
+  {
+    "number": 9,
+    "id": "1_Samuel",
+    "usfm": "1SA",
+    "testament": "old",
+    "chapters_count": 31,
+    "name": "1 Samuel",
+    "amharic_name": "1 ሳሙኤል"
+  },
+  {
+    "number": 10,
+    "id": "2_Samuel",
+    "usfm": "2SA",
+    "testament": "old",
+    "chapters_count": 24,
+    "name": "2 Samuel",
+    "amharic_name": "2 ሳሙኤል"
+  },
+  {
+    "number": 11,
+    "id": "1_Kings",
+    "usfm": "1KI",
+    "testament": "old",
+    "chapters_count": 22,
+    "name": "1 Kings",
+    "amharic_name": "1 ነገሥት"
+  },
+  {
+    "number": 12,
+    "id": "2_Kings",
+    "usfm": "2KI",
+    "testament": "old",
+    "chapters_count": 25,
+    "name": "2 Kings",
+    "amharic_name": "2 ነገሥት"
+  },
+  {
+    "number": 13,
+    "id": "1_Chronicles",
+    "usfm": "1CH",
+    "testament": "old",
+    "chapters_count": 29,
+    "name": "1 Chronicles",
+    "amharic_name": "1 ዜና መዋዕል"
+  },
+  {
+    "number": 14,
+    "id": "2_Chronicles",
+    "usfm": "2CH",
+    "testament": "old",
+    "chapters_count": 36,
+    "name": "2 Chronicles",
+    "amharic_name": "2 ዜና መዋዕል"
+  },
+  {
+    "number": 15,
+    "id": "Ezra",
+    "usfm": "EZR",
+    "testament": "old",
+    "chapters_count": 10,
+    "name": "Ezra",
+    "amharic_name": "ዕዝራ"
+  },
+  {
+    "number": 16,
+    "id": "Nehemiah",
+    "usfm": "NEH",
+    "testament": "old",
+    "chapters_count": 13,
+    "name": "Nehemiah",
+    "amharic_name": "ነህምያ"
+  },
+  {
+    "number": 17,
+    "id": "Esther",
+    "usfm": "EST",
+    "testament": "old",
+    "chapters_count": 10,
+    "name": "Esther",
+    "amharic_name": "አስቴር"
+  },
+  {
+    "number": 18,
+    "id": "Job",
+    "usfm": "JOB",
+    "testament": "old",
+    "chapters_count": 42,
+    "name": "Job",
+    "amharic_name": "ኢዮብ"
+  },
+  {
+    "number": 19,
+    "id": "Psalms",
+    "usfm": "PSA",
+    "testament": "old",
+    "chapters_count": 150,
+    "name": "Psalms",
+    "amharic_name": "መዝሙረ ዳዊት"
+  },
+  {
+    "number": 20,
+    "id": "Proverbs",
+    "usfm": "PRO",
+    "testament": "old",
+    "chapters_count": 31,
+    "name": "Proverbs",
+    "amharic_name": "ምሳሌ"
+  },
+  {
+    "number": 21,
+    "id": "Ecclesiastes",
+    "usfm": "ECC",
+    "testament": "old",
+    "chapters_count": 12,
+    "name": "Ecclesiastes",
+    "amharic_name": "መክብብ"
+  },
+  {
+    "number": 22,
+    "id": "Song_of_Solomon",
+    "usfm": "SNG",
+    "testament": "old",
+    "chapters_count": 8,
+    "name": "Song of Solomon",
+    "amharic_name": "መኃልየ መኃልይ ዘሰሎሞን"
+  },
+  {
+    "number": 23,
+    "id": "Isaiah",
+    "usfm": "ISA",
+    "testament": "old",
+    "chapters_count": 66,
+    "name": "Isaiah",
+    "amharic_name": "ኢሳይያስ"
+  },
+  {
+    "number": 24,
+    "id": "Jeremiah",
+    "usfm": "JER",
+    "testament": "old",
+    "chapters_count": 52,
+    "name": "Jeremiah",
+    "amharic_name": "ኤርምያስ"
+  },
+  {
+    "number": 25,
+    "id": "Lamentations",
+    "usfm": "LAM",
+    "testament": "old",
+    "chapters_count": 5,
+    "name": "Lamentations",
+    "amharic_name": "ሰቆቃወ ኤርምያስ"
+  },
+  {
+    "number": 26,
+    "id": "Ezekiel",
+    "usfm": "EZK",
+    "testament": "old",
+    "chapters_count": 48,
+    "name": "Ezekiel",
+    "amharic_name": "ሕዝቅኤል"
+  },
+  {
+    "number": 27,
+    "id": "Daniel",
+    "usfm": "DAN",
+    "testament": "old",
+    "chapters_count": 12,
+    "name": "Daniel",
+    "amharic_name": "ዳንኤል"
+  },
+  {
+    "number": 28,
+    "id": "Hosea",
+    "usfm": "HOS",
+    "testament": "old",
+    "chapters_count": 14,
+    "name": "Hosea",
+    "amharic_name": "ሆሴዕ"
+  },
+  {
+    "number": 29,
+    "id": "Joel",
+    "usfm": "JOL",
+    "testament": "old",
+    "chapters_count": 3,
+    "name": "Joel",
+    "amharic_name": "ኢዩኤል"
+  },
+  {
+    "number": 30,
+    "id": "Amos",
+    "usfm": "AMO",
+    "testament": "old",
+    "chapters_count": 9,
+    "name": "Amos",
+    "amharic_name": "አሞጽ"
+  },
+  {
+    "number": 31,
+    "id": "Obadiah",
+    "usfm": "OBA",
+    "testament": "old",
+    "chapters_count": 1,
+    "name": "Obadiah",
+    "amharic_name": "አብድዩ"
+  },
+  {
+    "number": 32,
+    "id": "Jonah",
+    "usfm": "JON",
+    "testament": "old",
+    "chapters_count": 4,
+    "name": "Jonah",
+    "amharic_name": "ዮናስ"
+  },
+  {
+    "number": 33,
+    "id": "Micah",
+    "usfm": "MIC",
+    "testament": "old",
+    "chapters_count": 7,
+    "name": "Micah",
+    "amharic_name": "ሚክያስ"
+  },
+  {
+    "number": 34,
+    "id": "Nahum",
+    "usfm": "NAM",
+    "testament": "old",
+    "chapters_count": 3,
+    "name": "Nahum",
+    "amharic_name": "ናሆም"
+  },
+  {
+    "number": 35,
+    "id": "Habakkuk",
+    "usfm": "HAB",
+    "testament": "old",
+    "chapters_count": 3,
+    "name": "Habakkuk",
+    "amharic_name": "ዕንባቆም"
+  },
+  {
+    "number": 36,
+    "id": "Zephaniah",
+    "usfm": "ZEP",
+    "testament": "old",
+    "chapters_count": 3,
+    "name": "Zephaniah",
+    "amharic_name": "ሶፎንያስ"
+  },
+  {
+    "number": 37,
+    "id": "Haggai",
+    "usfm": "HAG",
+    "testament": "old",
+    "chapters_count": 2,
+    "name": "Haggai",
+    "amharic_name": "ሐጌ"
+  },
+  {
+    "number": 38,
+    "id": "Zechariah",
+    "usfm": "ZEC",
+    "testament": "old",
+    "chapters_count": 14,
+    "name": "Zechariah",
+    "amharic_name": "ዘካርያስ"
+  },
+  {
+    "number": 39,
+    "id": "Malachi",
+    "usfm": "MAL",
+    "testament": "old",
+    "chapters_count": 4,
+    "name": "Malachi",
+    "amharic_name": "ሚልክያስ"
+  },
+  {
+    "number": 40,
+    "id": "Matthew",
+    "usfm": "MAT",
+    "testament": "new",
+    "chapters_count": 28,
+    "name": "Matthew",
+    "amharic_name": "የማቴዎስ ወንጌል"
+  },
+  {
+    "number": 41,
+    "id": "Mark",
+    "usfm": "MRK",
+    "testament": "new",
+    "chapters_count": 16,
+    "name": "Mark",
+    "amharic_name": "የማርቆስ ወንጌል"
+  },
+  {
+    "number": 42,
+    "id": "Luke",
+    "usfm": "LUK",
+    "testament": "new",
+    "chapters_count": 24,
+    "name": "Luke",
+    "amharic_name": "የሉቃስ ወንጌል"
+  },
+  {
+    "number": 43,
+    "id": "John",
+    "usfm": "JHN",
+    "testament": "new",
+    "chapters_count": 21,
+    "name": "John",
+    "amharic_name": "የዮሐንስ ወንጌል"
+  },
+  {
+    "number": 44,
+    "id": "Acts",
+    "usfm": "ACT",
+    "testament": "new",
+    "chapters_count": 28,
+    "name": "Acts",
+    "amharic_name": "የሐዋርያት ሥራ"
+  },
+  {
+    "number": 45,
+    "id": "Romans",
+    "usfm": "ROM",
+    "testament": "new",
+    "chapters_count": 16,
+    "name": "Romans",
+    "amharic_name": "ሮሜ"
+  },
+  {
+    "number": 46,
+    "id": "1_Corinthians",
+    "usfm": "1CO",
+    "testament": "new",
+    "chapters_count": 16,
+    "name": "1 Corinthians",
+    "amharic_name": "1 ቆሮንቶስ"
+  },
+  {
+    "number": 47,
+    "id": "2_Corinthians",
+    "usfm": "2CO",
+    "testament": "new",
+    "chapters_count": 13,
+    "name": "2 Corinthians",
+    "amharic_name": "2 ቆሮንቶስ"
+  },
+  {
+    "number": 48,
+    "id": "Galatians",
+    "usfm": "GAL",
+    "testament": "new",
+    "chapters_count": 6,
+    "name": "Galatians",
+    "amharic_name": "ገላትያ"
+  },
+  {
+    "number": 49,
+    "id": "Ephesians",
+    "usfm": "EPH",
+    "testament": "new",
+    "chapters_count": 6,
+    "name": "Ephesians",
+    "amharic_name": "ኤፌሶን"
+  },
+  {
+    "number": 50,
+    "id": "Philippians",
+    "usfm": "PHP",
+    "testament": "new",
+    "chapters_count": 4,
+    "name": "Philippians",
+    "amharic_name": "ፊልጵስዩስ"
+  },
+  {
+    "number": 51,
+    "id": "Colossians",
+    "usfm": "COL",
+    "testament": "new",
+    "chapters_count": 4,
+    "name": "Colossians",
+    "amharic_name": "ቆላስይስ"
+  },
+  {
+    "number": 52,
+    "id": "1_Thessalonians",
+    "usfm": "1TH",
+    "testament": "new",
+    "chapters_count": 5,
+    "name": "1 Thessalonians",
+    "amharic_name": "1 ተሰሎንቄ"
+  },
+  {
+    "number": 53,
+    "id": "2_Thessalonians",
+    "usfm": "2TH",
+    "testament": "new",
+    "chapters_count": 3,
+    "name": "2 Thessalonians",
+    "amharic_name": "2 ተሰሎንቄ"
+  },
+  {
+    "number": 54,
+    "id": "1_Timothy",
+    "usfm": "1TI",
+    "testament": "new",
+    "chapters_count": 6,
+    "name": "1 Timothy",
+    "amharic_name": "1 ጢሞቴዎስ"
+  },
+  {
+    "number": 55,
+    "id": "2_Timothy",
+    "usfm": "2TI",
+    "testament": "new",
+    "chapters_count": 4,
+    "name": "2 Timothy",
+    "amharic_name": "2 ጢሞቴዎስ"
+  },
+  {
+    "number": 56,
+    "id": "Titus",
+    "usfm": "TIT",
+    "testament": "new",
+    "chapters_count": 3,
+    "name": "Titus",
+    "amharic_name": "ቲቶ"
+  },
+  {
+    "number": 57,
+    "id": "Philemon",
+    "usfm": "PHM",
+    "testament": "new",
+    "chapters_count": 1,
+    "name": "Philemon",
+    "amharic_name": "ፊልሞና"
+  },
+  {
+    "number": 58,
+    "id": "Hebrews",
+    "usfm": "HEB",
+    "testament": "new",
+    "chapters_count": 13,
+    "name": "Hebrews",
+    "amharic_name": "ዕብራውያን"
+  },
+  {
+    "number": 59,
+    "id": "James",
+    "usfm": "JAS",
+    "testament": "new",
+    "chapters_count": 5,
+    "name": "James",
+    "amharic_name": "ያዕቆብ"
+  },
+  {
+    "number": 60,
+    "id": "1_Peter",
+    "usfm": "1PE",
+    "testament": "new",
+    "chapters_count": 5,
+    "name": "1 Peter",
+    "amharic_name": "1 ጴጥሮስ"
+  },
+  {
+    "number": 61,
+    "id": "2_Peter",
+    "usfm": "2PE",
+    "testament": "new",
+    "chapters_count": 3,
+    "name": "2 Peter",
+    "amharic_name": "2 ጴጥሮስ"
+  },
+  {
+    "number": 62,
+    "id": "1_John",
+    "usfm": "1JN",
+    "testament": "new",
+    "chapters_count": 5,
+    "name": "1 John",
+    "amharic_name": "1 ዮሐንስ"
+  },
+  {
+    "number": 63,
+    "id": "2_John",
+    "usfm": "2JN",
+    "testament": "new",
+    "chapters_count": 1,
+    "name": "2 John",
+    "amharic_name": "2 ዮሐንስ"
+  },
+  {
+    "number": 64,
+    "id": "3_John",
+    "usfm": "3JN",
+    "testament": "new",
+    "chapters_count": 1,
+    "name": "3 John",
+    "amharic_name": "3 ዮሐንስ"
+  },
+  {
+    "number": 65,
+    "id": "Jude",
+    "usfm": "JUD",
+    "testament": "new",
+    "chapters_count": 1,
+    "name": "Jude",
+    "amharic_name": "ይሁዳ"
+  },
+  {
+    "number": 66,
+    "id": "Revelation",
+    "usfm": "REV",
+    "testament": "new",
+    "chapters_count": 22,
+    "name": "Revelation",
+    "amharic_name": "የዮሐንስ ራእይ"
+  }
+]
