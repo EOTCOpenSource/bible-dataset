@@ -23,7 +23,7 @@ Several Ge'ez Old Testament books currently exist only as scanned manuscript pag
 * Please cite the authoritative print edition or manuscript when suggesting corrections.
 
 ### 4. 🏷️ Expanding Localized Book Names in `books.json`
-* Help populate native localized book names in [`books.json`](file:///home/hena/Downloads/bibleData/books.json) (e.g. Oromo, Tigrinya, Wolaytta, Somali, Dawro, Gamo).
+* Help populate native localized book names in [`books.json`](books.json) (e.g. Oromo, Tigrinya, Wolaytta, Somali, Dawro, Gamo).
 
 ### 5. 💻 Tooling & Libraries
 * Building client SDKs and packages (npm package, Python library, Flutter/Dart package).
@@ -84,7 +84,7 @@ Every book file inside `data/<version>/<Book_Name>.json` must strictly conform t
 1. **Book Naming**:
    * Use canonical PascalCase with underscores for numbered books:
      `Genesis.json`, `1_Samuel.json`, `2_Kings.json`, `Song_of_Solomon.json`, `1_Corinthians.json`.
-   * Standard book IDs and USFM codes must match [`books.json`](file:///home/hena/Downloads/bibleData/books.json) (or [`apocrypha_books.json`](file:///home/hena/Downloads/bibleData/apocrypha_books.json)).
+   * Standard book IDs and USFM codes must match [`books.json`](books.json) (or [`apocrypha_books.json`](apocrypha_books.json)).
 2. **Text Normalization**:
    * All files must be encoded in **UTF-8** (without BOM).
    * Unicode text should be normalized (**NFC**).
@@ -122,8 +122,8 @@ python3 -m json.tool data/am2000/John.json > /dev/null
 
 ### Step 4: Update Metadata
 If you added a new translation or new books, update:
-* [`translations.json`](file:///home/hena/Downloads/bibleData/translations.json)
-* [`metadata/translations.json`](file:///home/hena/Downloads/bibleData/metadata/translations.json)
+* [`translations.json`](translations.json)
+* [`metadata/translations.json`](metadata/translations.json)
 
 ### Step 5: Commit & Submit a Pull Request
 1. Commit with a clear, concise message:

@@ -6,7 +6,7 @@ A developer-friendly, multi-language Bible dataset featuring 13 translations (Se
 
 ## 🚀 Dataset Structure
 
-All translation and apocrypha datasets are bundled inside the [`data/`] directory.
+All translation and apocrypha datasets are bundled inside the [`data/`](data/) directory.
 
 ### 1. Canonical Translations: `data/<version>/<book>.json`
 Every translation folder strictly contains only canonical books (up to the standard 66 books). Each book is a single JSON file where **`chapters` is an array of objects**:
@@ -54,27 +54,27 @@ data/
 
 | File | Purpose |
 | :--- | :--- |
-| [`translations.json`](file:///home/hena/Downloads/bibleData/translations.json) | Catalog of all 13 versions with language codes, native names, direction (`ltr`/`rtl`), canonical book counts, and apocrypha paths. |
-| [`books.json`](file:///home/hena/Downloads/bibleData/books.json) | Master list of the 66 canonical books with standard USFM 3-letter codes (`GEN`, `JHN`), book order (1–66), chapter counts, and Amharic names. |
-| [`apocrypha_books.json`](file:///home/hena/Downloads/bibleData/apocrypha_books.json) | Catalog of the 15 deuterocanonical/apocryphal books with USFM codes (`JUB`, `ENO`, `TOB`, etc.), Amharic names, and chapter counts. |
+| [`translations.json`](translations.json) | Catalog of all 13 versions with language codes, native names, direction (`ltr`/`rtl`), canonical book counts, and apocrypha paths. |
+| [`books.json`](books.json) | Master list of the 66 canonical books with standard USFM 3-letter codes (`GEN`, `JHN`), book order (1–66), chapter counts, and Amharic names. |
+| [`apocrypha_books.json`](apocrypha_books.json) | Catalog of the 15 deuterocanonical/apocryphal books with USFM codes (`JUB`, `ENO`, `TOB`, etc.), Amharic names, and chapter counts. |
 
 ### Available Translations
 
 | Version ID | Language | Native Name | Direction | Script | Testaments | Canonical Books | Apocrypha Books |
 | :--- | :--- | :--- | :---: | :--- | :---: | :---: | :---: |
-| **`am1954`** | Amharic (`amh`) | የአፄ ኃይለ ሥላሴ 1954 መጽሐፍ ቅዱስ | LTR | Ethiopic | OT, NT | 66 | — |
-| **`am2000`** | Amharic (`amh`) | የ2000 ዓ.ም. የአማርኛ መጽሐፍ ቅዱስ | LTR | Ethiopic | OT, NT | 66 | 15 in [`data/apocrypha/am2000/`](file:///home/hena/Downloads/bibleData/data/apocrypha/am2000) |
-| **`coptic`** | Coptic (`cop`) | Ϯⲇⲓⲁⲑⲏⲕⲏ ⲛ̀ⲃⲉⲣⲓ | LTR | Coptic | NT | 27 | — |
-| **`dawro`** | Dawro (`dwr`) | ዳውሮ ቃላ | LTR | Ethiopic | NT | 27 | — |
-| **`gamo`** | Gamo (`gmv`) | ጋሞ ቃላ | LTR | Ethiopic | NT | 27 | — |
-| **`geez`** | Ge'ez (`gez`) | መጽሐፍ ቅዱስ በግዕዝ (Dillmann Edition) | LTR | Ethiopic | OT, NT | 53 | 6 in [`data/apocrypha/geez/`](file:///home/hena/Downloads/bibleData/data/apocrypha/geez) |
-| **`greekOriginal`** | Greek (`grc`) | Ἡ Καινὴ Διαθήκη | LTR | Greek | NT | 27 | — |
-| **`hebrewBible`** | Hebrew (`heb`) | תנ״ך והבריት החדשה | RTL | Hebrew | OT, NT | 66 | — |
-| **`hebrewOriginal`** | Hebrew (`heb`) | תורה, נביאים וכתובים | RTL | Hebrew | OT | 39 | — |
-| **`oromiffa`** | Oromo (`orm`) | Macaafa Qulqulluu | LTR | Latin | OT, NT | 66 | — |
-| **`somali`** | Somali (`som`) | Kitaabka Quduuska Ah | LTR | Latin | OT, NT | 66 | — |
-| **`tigrinya1997`** | Tigrinya (`tir`) | መጽሐፍ ቅዱስ ብትግርኛ 1997 | LTR | Ethiopic | OT, NT | 66 | — |
-| **`wolayta`** | Wolaytta (`wal`) | ዎላይታ ጌሻ ማፃፋ | LTR | Ethiopic | OT, NT | 66 | — |
+| [**`am1954`**](data/am1954/) | Amharic (`amh`) | የአፄ ኃይለ ሥላሴ 1954 መጽሐፍ ቅዱስ | LTR | Ethiopic | OT, NT | 66 | — |
+| [**`am2000`**](data/am2000/) | Amharic (`amh`) | የ2000 ዓ.ም. የአማርኛ መጽሐፍ ቅዱስ | LTR | Ethiopic | OT, NT | 66 | 15 in [`data/apocrypha/am2000/`](data/apocrypha/am2000) |
+| [**`coptic`**](data/coptic/) | Coptic (`cop`) | Ϯⲇⲓⲁⲑⲏⲕⲏ ⲛ̀ⲃⲉⲣⲓ | LTR | Coptic | NT | 27 | — |
+| [**`dawro`**](data/dawro/) | Dawro (`dwr`) | ዳውሮ ቃላ | LTR | Ethiopic | NT | 27 | — |
+| [**`gamo`**](data/gamo/) | Gamo (`gmv`) | ጋሞ ቃላ | LTR | Ethiopic | NT | 27 | — |
+| [**`geez`**](data/geez/) | Ge'ez (`gez`) | መጽሐፍ ቅዱስ በግዕዝ (Dillmann Edition) | LTR | Ethiopic | OT, NT | 53 | 6 in [`data/apocrypha/geez/`](data/apocrypha/geez) |
+| [**`greekOriginal`**](data/greekOriginal/) | Greek (`grc`) | Ἡ Καινὴ Διαθήκη | LTR | Greek | NT | 27 | — |
+| [**`hebrewBible`**](data/hebrewBible/) | Hebrew (`heb`) | תנ״ך והבריት החדשה | RTL | Hebrew | OT, NT | 66 | — |
+| [**`hebrewOriginal`**](data/hebrewOriginal/) | Hebrew (`heb`) | תורה, נביאים וכתובים | RTL | Hebrew | OT | 39 | — |
+| [**`oromiffa`**](data/oromiffa/) | Oromo (`orm`) | Macaafa Qulqulluu | LTR | Latin | OT, NT | 66 | — |
+| [**`somali`**](data/somali/) | Somali (`som`) | Kitaabka Quduuska Ah | LTR | Latin | OT, NT | 66 | — |
+| [**`tigrinya1997`**](data/tigrinya1997/) | Tigrinya (`tir`) | መጽሐፍ ቅዱስ ብትግርኛ 1997 | LTR | Ethiopic | OT, NT | 66 | — |
+| [**`wolayta`**](data/wolayta/) | Wolaytta (`wal`) | ዎላይታ ጌሻ ማፃፋ | LTR | Ethiopic | OT, NT | 66 | — |
 
 ---
 
@@ -111,7 +111,7 @@ console.log(john1v1, enoch1v1);
 
 ## 🤝 Contributing
 
-We welcome community contributions! Please read our [**`CONTRIBUTING.md`**](file:///home/hena/Downloads/bibleData/CONTRIBUTING.md) guide for details on:
+We welcome community contributions! Please read our [**`CONTRIBUTING.md`**](CONTRIBUTING.md) guide for details on:
 - Adding new languages and regional translations (Sidama, Hadiyya, Afar, etc.)
 - Expanding digitized Ge'ez Old Testament / Deuterocanonical books
 - Correcting typos and proofreading
