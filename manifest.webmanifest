@@ -1,0 +1,14 @@
+{
+  "name": "መጽሐፍ ቅዱስ — Bible Dataset Reader",
+  "short_name": "መጽሐፍ ቅዱስ",
+  "description": "Read the Bible in Amharic, Ge'ez, Tigrinya, Oromo and 9 more languages.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#fbf8f7",
+  "theme_color": "#611b1d",
+  "icons": [
+    { "src": "assets/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "assets/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
