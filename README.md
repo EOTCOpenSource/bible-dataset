@@ -109,6 +109,31 @@ console.log(john1v1, enoch1v1);
 
 ---
 
+## 🙏 Credits & Sources
+
+Most of the Bible text in this dataset was converted from the XML Bibles published by **[Beblia — Holy Bible XML Format](https://github.com/Beblia/Holy-Bible-XML-Format)** (200+ languages, 1000+ versions, collected by the Beblia team at [beblia.com](https://beblia.com)). Thank you to the Beblia team for compiling these texts and making them openly available.
+
+The Beblia repository has no formal license file. Its README says the files may be used "at your own discretion, no need to ask for permission", with no warranty.
+
+### ⚠️ Translation copyrights
+
+Beblia's permission covers its XML compilation. It cannot waive the copyright of the translations themselves, which stays with each translation's publisher. Several of the source files carry their own notice in the `<bible>` header, for example:
+
+| Translation | Notice in the source XML header |
+| :--- | :--- |
+| `am2000` | Bible Society of Ethiopia |
+| `dawro` | © 2011, Wycliffe Bible Translators, Inc. All rights reserved |
+| `gamo` | © 2011, Wycliffe Bible Translators, Inc. All rights reserved |
+| `wolayta` | © 2002, Bible Society of Ethiopia |
+| `somali` | © 2008, Society for International Ministries |
+| `coptic` | Attribution: 2006, J. Warren Wells, editor |
+
+Some texts are public domain (for example the Greek GNT 1904 and older Hebrew editions). The Ge'ez text (Dillmann edition) and the Ge'ez apocrypha are not part of the Beblia collection; they came from other sources.
+
+**What this means for you:** this dataset is free to use for personal study, research and non-commercial ministry. Before redistributing a copyrighted translation commercially, or bundling it in a published app, check its license and get permission from its publisher (for example the Bible Society of Ethiopia or Wycliffe). If you hold rights to one of these translations and want it credited differently or removed, please open an issue.
+
+---
+
 ## 🤝 Contributing
 
 We welcome community contributions! Please read our [**`CONTRIBUTING.md`**](CONTRIBUTING.md) guide for details on:
