@@ -12,7 +12,44 @@ This directory contains command-line utilities for data ingestion, format conver
 | [`convert.py`](convert.py) | Splits and transforms monolithic XML Bible files into project-standard `data/<translation>/<Book>.json` files. |
 | [`validate.py`](validate.py) | Comprehensive dataset validator for JSON schema compliance, catalog consistency, and chapter/verse statistics. |
 | [`normalize_geez.py`](normalize_geez.py) | Cleans Ge'ez texts by stripping stray OCR tags (`<pb/>`, `<f>`), irregular punctuation, and non-Ethiopic formatting artifacts. |
-| [`download_ethiopian_books.py`](download_ethiopian_books.py) | Scrapes and downloads scanned/digitized Ethiopian narrow and broad canon books. |
+| [`convert_weahadu.py`](convert_weahadu.py) | Exports the dataset into the 80-weahadu JSON layout (`<edition>/meta.json` + `<edition>/books/NN-slug.json`). |
+
+---
+
+## 🔁 `convert_weahadu.py`: Export to the 80-weahadu Layout
+
+Writes every translation (or the ones you pick) into the same JSON shape used by the 80-weahadu project, so both datasets can be read by the same code. It only reads this repository's files; source files are never changed.
+
+```bash
+python scripts/convert_weahadu.py                    # all translations -> dist/weahadu/
+python scripts/convert_weahadu.py -t am2000 geez     # selected translations
+python scripts/convert_weahadu.py -o out --indent 0  # custom folder, compact JSON
+```
+
+Output:
+
+```
+dist/weahadu/
+  canon.json                  book registry (id, order, slug, file)
+  editions.json               index of exported editions
+  am-2000/meta.json           edition metadata + book list with stats
+  am-2000/books/01-genesis.json
+```
+
+Book file shape (verses are an array; `n` is an integer):
+
+```json
+{
+  "edition": "am-2000", "book": "GEN", "usfm_id": "GEN", "order": 1,
+  "chapters": [{ "n": 1, "verses": [{ "n": 1, "t": "...", "alt": "፩" }] }]
+}
+```
+
+Notes:
+- Filenames use a fixed canon slot, so `01-genesis.json` is Genesis in every edition. The New Testament starts at slot 59 (`59-matthew.json`), leaving 40–58 for the deuterocanonical books.
+- The Ethiopic 1–2 Maccabees and 1–2 Esdras are different works from the Greek ones, so they keep EOTC names (`51-ezra-sutuel.json`, `54-ezra-kalie.json`). `TEG` (Book of Admonition) is written as `4MA`, matching the EOTC slot. `4BA` (Rest of Baruch) gets a new slot, `100-rest-of-baruch.json`.
+- `alt` (the Ge'ez numeral of the verse number) is added for Amharic, Ge'ez and Tigrinya editions.
+- Optional fields from the 80-weahadu format (`headings`, `refs`, `notes`, `lines`) are not produced because the source XML does not contain that data.
 
 ---
 

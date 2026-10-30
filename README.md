@@ -109,6 +109,56 @@ console.log(john1v1, enoch1v1);
 
 ---
 
+## 📚 Preview Reader
+
+[`index.html`](index.html) is a reader web app for the dataset ([`assets/app.js`](assets/app.js), [`assets/app.css`](assets/app.css)). It loads `translations.json`, `books.json` and the book files from `data/` directly, so there is no build step. Its look follows the Ethiopic manuscript tradition: ḥaräg interlace at chapter openings, the opening verse and holy names in rubric red, and highlights in the four manuscript pigments.
+
+```bash
+python -m http.server 8000
+```
+
+Then open <http://localhost:8000>. The page must be served over HTTP; opening the file directly won't load the data. It also works as-is on GitHub Pages, Vercel or any static host.
+
+Features:
+- All 13 translations, with Old Testament, Deuterocanon and New Testament book lists
+- Side menu with books and chapters on wide screens (hide it with the panel button); bottom sheets on phones
+- Parallel reading: a second translation side by side (interleaved on phones)
+- Search one book or a whole translation
+- Tap verses to copy, share, link or highlight them; highlights are kept in the browser
+- Ge'ez or Arabic verse numbers, holy names in red, text size, line spacing, verse-per-line layout
+- Auto, Light, Dusk and Night (true black) themes
+- Labels in Amharic, Tigrinya, Oromo or English, following the translation being read
+- Phone-friendly: bottom dock, bottom sheets, swipe left/right to change chapter, bars hide while reading
+- Installable as an app and readable offline once chapters have been opened ([`sw.js`](sw.js), [`manifest.webmanifest`](manifest.webmanifest))
+- Shareable verse links, e.g. `#am2000/John/3/16`; keys: ← / → chapter, `/` search, `b` books, `Esc` close
+
+---
+
+## 🙏 Credits & Sources
+
+Most of the Bible text in this dataset was converted from the XML Bibles published by **[Beblia — Holy Bible XML Format](https://github.com/Beblia/Holy-Bible-XML-Format)** (200+ languages, 1000+ versions, collected by the Beblia team at [beblia.com](https://beblia.com)). Thank you to the Beblia team for compiling these texts and making them openly available.
+
+The Beblia repository has no formal license file. Its README says the files may be used "at your own discretion, no need to ask for permission", with no warranty.
+
+### ⚠️ Translation copyrights
+
+Beblia's permission covers its XML compilation. It cannot waive the copyright of the translations themselves, which stays with each translation's publisher. Several of the source files carry their own notice in the `<bible>` header, for example:
+
+| Translation | Notice in the source XML header |
+| :--- | :--- |
+| `am2000` | Bible Society of Ethiopia |
+| `dawro` | © 2011, Wycliffe Bible Translators, Inc. All rights reserved |
+| `gamo` | © 2011, Wycliffe Bible Translators, Inc. All rights reserved |
+| `wolayta` | © 2002, Bible Society of Ethiopia |
+| `somali` | © 2008, Society for International Ministries |
+| `coptic` | Attribution: 2006, J. Warren Wells, editor |
+
+Some texts are public domain (for example the Greek GNT 1904 and older Hebrew editions). The Ge'ez text (Dillmann edition) and the Ge'ez apocrypha are not part of the Beblia collection; they came from other sources.
+
+**What this means for you:** this dataset is free to use for personal study, research and non-commercial ministry. Before redistributing a copyrighted translation commercially, or bundling it in a published app, check its license and get permission from its publisher (for example the Bible Society of Ethiopia or Wycliffe). If you hold rights to one of these translations and want it credited differently or removed, please open an issue.
+
+---
+
 ## 🤝 Contributing
 
 We welcome community contributions! Please read our [**`CONTRIBUTING.md`**](CONTRIBUTING.md) guide for details on:
