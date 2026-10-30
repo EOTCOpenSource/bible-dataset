@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="am">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bible Dataset Reader</title>
+<meta name="description" content="Read the Bible in Amharic, Ge'ez, Tigrinya, Oromo and 9 more languages, including the deuterocanonical books of the Ethiopian Orthodox canon.">
+<meta name="theme-color" content="#fbf8f7">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/logo-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="መጽሐፍ ቅዱስ">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abyssinica+SIL&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=Noto+Serif+Ethiopic:wght@400;600&family=Noto+Serif+Hebrew:wght@400;600&family=Noto+Sans+Coptic&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/app.css">
+</head>
+<body>
+
+<header class="bar" id="bar">
+  <button class="icon-btn side-toggle" id="side-btn" aria-label="Book menu" aria-pressed="true" aria-controls="side">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M9 4v16"/></svg>
+  </button>
+  <div class="brand">
+    <img src="assets/logo-180.png" alt="" width="34" height="34">
+    <span>መጽሐፍ ቅዱስ</span>
+  </div>
+  <button class="chip ref" id="ref-btn" aria-haspopup="dialog">
+    <span class="label" id="ref-label"></span>
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+  </button>
+  <button class="chip" id="tr-btn" aria-haspopup="dialog">
+    <span class="label" id="tr-label"></span>
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+  </button>
+  <div class="spacer"></div>
+  <button class="icon-btn" id="search-btn" aria-label="Search" aria-haspopup="dialog">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+  </button>
+  <button class="icon-btn" id="parallel-btn" aria-label="Parallel reading" aria-pressed="false" aria-haspopup="dialog">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="7.5" height="16" rx="2"/><rect x="13.5" y="4" width="7.5" height="16" rx="2"/></svg>
+  </button>
+  <button class="icon-btn" id="settings-btn" aria-label="Reading settings" aria-haspopup="dialog">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19 9 5l5 14"/><path d="M5.8 14h6.4"/><path d="M15 19l3-8 3 8"/><path d="M16 16.5h4"/></svg>
+  </button>
+  <div class="progress" id="progress"></div>
+</header>
+
+<aside class="side" id="side" aria-label="Books and chapters">
+  <div class="seg" id="side-tabs" role="tablist"></div>
+  <div class="side-lists">
+    <ul class="list side-books" id="side-books"></ul>
+    <div class="side-chapters" id="side-chapters"></div>
+  </div>
+</aside>
+
+<main>
+  <article class="page" id="page" aria-live="polite"></article>
+</main>
+
+<button class="edge prev js-prev" aria-label="Previous chapter">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg>
+</button>
+<button class="edge next js-next" aria-label="Next chapter">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg>
+</button>
+
+<nav class="dock" id="dock" aria-label="Chapter navigation">
+  <button class="icon-btn js-prev" aria-label="Previous chapter">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg>
+  </button>
+  <button class="chip ref" id="dock-ref-btn" aria-haspopup="dialog">
+    <span class="label" id="dock-ref"></span>
+  </button>
+  <button class="icon-btn js-next" aria-label="Next chapter">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg>
+  </button>
+</nav>
+
+<div class="actions" id="actions" role="toolbar" aria-hidden="true" aria-label="Selected verses">
+  <span class="ref"></span>
+  <button class="icon-btn" id="act-copy" aria-label="Copy">
+    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2.5"/><path d="M5 15V6a2 2 0 0 1 2-2h8"/></svg>
+  </button>
+  <button class="icon-btn" id="act-share" aria-label="Share">
+    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 8 5-5 5 5"/><path d="M5 13v5a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5"/></svg>
+  </button>
+  <button class="icon-btn" id="act-link" aria-label="Copy link">
+    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>
+  </button>
+  <div class="swatches" role="group" aria-label="Highlight">
+    <button class="swatch" data-c="ochre" aria-label="Ochre highlight"></button>
+    <button class="swatch" data-c="red" aria-label="Red highlight"></button>
+    <button class="swatch" data-c="green" aria-label="Green highlight"></button>
+    <button class="swatch" data-c="blue" aria-label="Blue highlight"></button>
+    <button class="swatch" data-c="none" aria-label="Remove highlight"></button>
+  </div>
+  <button class="icon-btn" id="act-close" aria-label="Clear selection">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+  </button>
+</div>
+
+<div class="toast" id="toast" role="status"></div>
+<div class="scrim" id="scrim"></div>
+
+<!-- Books and chapters -->
+<section class="sheet" id="sheet-books" role="dialog" aria-modal="true" aria-labelledby="books-title" aria-hidden="true">
+  <div class="sheet-grip"></div>
+  <div class="sheet-head">
+    <h2 id="books-title"></h2>
+    <button class="icon-btn js-close" aria-label="Close">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+  </div>
+  <div class="field">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="book-filter" type="search" autocomplete="off" aria-label="Find a book">
+  </div>
+  <div class="seg" id="book-tabs" role="tablist"></div>
+  <div class="sheet-body" style="overflow-x:hidden">
+    <div class="slider" id="books-slider">
+      <ul class="list" id="book-list"></ul>
+      <div>
+        <div class="chapters-head">
+          <button class="icon-btn" id="chapters-back" aria-label="Back to books">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg>
+          </button>
+          <h3 id="chapters-title"></h3>
+        </div>
+        <div class="grid" id="chapter-grid"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Translations -->
+<section class="sheet" id="sheet-tr" role="dialog" aria-modal="true" aria-labelledby="tr-title" aria-hidden="true">
+  <div class="sheet-grip"></div>
+  <div class="sheet-head">
+    <h2 id="tr-title"></h2>
+    <button class="icon-btn js-close" aria-label="Close">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+  </div>
+  <div class="sheet-body" id="tr-list"></div>
+</section>
+
+<!-- Settings -->
+<section class="sheet" id="sheet-settings" role="dialog" aria-modal="true" aria-labelledby="settings-title" aria-hidden="true">
+  <div class="sheet-grip"></div>
+  <div class="sheet-head">
+    <h2 id="settings-title"></h2>
+    <button class="icon-btn js-close" aria-label="Close">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+  </div>
+  <div class="sheet-body" id="settings-body"></div>
+</section>
+
+<!-- Search -->
+<section class="sheet" id="sheet-search" role="dialog" aria-modal="true" aria-labelledby="search-title" aria-hidden="true">
+  <div class="sheet-grip"></div>
+  <div class="sheet-head">
+    <h2 id="search-title"></h2>
+    <button class="icon-btn js-close" aria-label="Close">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+  </div>
+  <div class="field">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="search-input" type="search" autocomplete="off" enterkeyhint="search" aria-label="Search">
+  </div>
+  <div class="seg" id="search-scope" role="tablist"></div>
+  <div class="search-status" id="search-status" role="status"></div>
+  <div class="sheet-body" id="search-results"></div>
+</section>
+
+<script src="assets/app.js" defer></script>
+</body>
+</html>
